@@ -46,12 +46,15 @@ class Trainer(pl.Trainer):
             devices: (Union[List[int], str, int, None]): Devices explicit names to use for training.
             max_epochs (int): Maximum number of epochs if no early stopping logic is implemented.
         """
+        print("Trainer init")
         self._accelerator = accelerator
         self._devices = devices
         self._max_epochs = max_epochs
 
         if self._accelerator == 'cpu':
             self._devices = None
+
+        print("Frist print")
 
         logger = pl.loggers.TensorBoardLogger(config.logs_path, name=None)
         super().__init__(
@@ -61,9 +64,12 @@ class Trainer(pl.Trainer):
             devices=self._devices,
             max_epochs=self._max_epochs,
             num_sanity_val_steps=0)
+        
+        print("Finished init")
 
     def save(self, results, path=config.artifacts_path):
         """Save the results of the training and the learned model."""
+        print("Saving model")
         result_file = os.path.join(config.artifacts_path, "results.json")
         with open(result_file, "w") as f:
             json.dump(results, f)
@@ -84,6 +90,9 @@ class Trainer(pl.Trainer):
 
 
 if __name__ == '__main__':
+    print("Entering main")
     cli = LightningCLI(trainer_class=Trainer, run=False)
+    print("Lightning init")
     cli.trainer.fit(model=cli.model, datamodule=cli.datamodule)
     cli.trainer.test(model=cli.model, datamodule=cli.datamodule)
+    print("End main")

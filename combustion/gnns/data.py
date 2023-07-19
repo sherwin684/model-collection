@@ -227,7 +227,7 @@ class LitCombustionDataModule(pl.LightningDataModule):
         """
         config.LinkRawData(raw_data_path, data_path)
 
-        dataset = R2Dataset(data_path, y_normalizer=self.y_normalizer).shuffle()
+        dataset = CnfDataset(data_path, y_normalizer=self.y_normalizer).shuffle()
         dataset_size = len(dataset)
 
         self.val_dataset = dataset[int(dataset_size * 0.9):]

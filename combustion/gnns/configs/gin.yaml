@@ -29,7 +29,7 @@ data:
 
 trainer:
     max_epochs: 1
-    accelerator: "gpu"
+    accelerator: "cpu"
     callbacks:
       - class_path: pytorch_lightning.callbacks.EarlyStopping
         init_args:

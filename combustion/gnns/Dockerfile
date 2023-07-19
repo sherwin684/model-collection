@@ -50,6 +50,9 @@ COPY --from=downloader /tmp/ai4sim/model-collection/tools/  ./model-collection/t
 WORKDIR $USE_CASE_PATH
 RUN python3 -m nox -s dev_dependencies --no-venv
 
+# Changing permissions for directory files
+RUN chmod -R 777 ./
+
 # change user
 USER ai4sim
 

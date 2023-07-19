@@ -20,7 +20,8 @@ import randomname
 
 # CAUTION : A refactoring of this file might be requiered for further development
 # raw_data_path to be adapted to your local data path.
-raw_data_path = "/path/to/your/local/data"
+# raw_data_path = "/data/01_sherwin/01_files/DATA"
+raw_data_path = "/data_ai4sim/"
 #
 
 root_path = os.path.dirname(os.path.realpath(__file__))
